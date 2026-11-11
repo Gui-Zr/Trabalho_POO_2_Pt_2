@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.unicentro.sistema_concessionaria.controller.CarroController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <!-- Título Principal -->
+    <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Gerenciamento de Carros">
+      <VBox.margin>
+         <Insets bottom="12.5" />
+      </VBox.margin></Label>
+
+    <!-- Topo: Esquerda (Formulário) e Direita (Logo da Empresa) -->
+    <HBox alignment="CENTER_LEFT" spacing="50.0">
+
+        <!-- Formulário compacto e alinhado -->
+        <GridPane hgap="15.0" vgap="10.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="110.0" />
+                <ColumnConstraints hgrow="NEVER" minWidth="280.0" prefWidth="350.0" />
+            </columnConstraints>
+
+            <Label text="Placa:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="txtPlaca" promptText="1234ABC" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Label text="Modelo:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="txtModelo" promptText="Calhambeque" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="Marca:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="txtMarca" promptText="Ford" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label text="Ano:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="txtAno" promptText="XXXX" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            <Label text="Preço:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <TextField fx:id="txtPreco" promptText="XX.xx" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+            <Label text="Imagem:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                <Button onAction="#selecionarImagem" text="Escolher..." />
+                <Label fx:id="lblCaminhoImagem" style="-fx-text-fill: #666666;" text="Nenhuma imagem selecionada" />
+            </HBox>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+        </GridPane>
+
+        <!-- Logo da Empresa (Área verde indicada) -->
+        <VBox alignment="CENTER" spacing="5.0">
+            <ImageView fx:id="imgLogoCarros" fitHeight="550.0" fitWidth="520.0" preserveRatio="true" smooth="true">
+            <VBox.margin>
+               <Insets left="50.0" />
+            </VBox.margin></ImageView>
+        </VBox>
+    </HBox>
+
+    <!-- Botões de Ação alinhados à Esquerda -->
+    <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-padding: 5px 0 5px 0;">
+        <Button onAction="#salvarCarro" style="-fx-background-color: #add8e6; -fx-cursor: hand;" text="Salvar / Atualizar" />
+        <Button onAction="#excluirCarro" style="-fx-background-color: #ffb6c1; -fx-cursor: hand;" text="Excluir" />
+        <Button onAction="#limparCampos" style="-fx-cursor: hand;" text="Limpar" />
+      <VBox.margin>
+         <Insets bottom="12.5" top="12.5" />
+      </VBox.margin>
+    </HBox>
+
+    <!-- Parte Inferior: Tabela à Esquerda (largura fixa controlada) e Imagem do Carro ao Lado (Área amarela) -->
+    <HBox alignment="TOP_LEFT" spacing="20.0">
+
+        <!-- Tabela com largura restrita para não esticar até o fim da tela -->
+        <TableView fx:id="tabelaCarros" prefHeight="520.0" prefWidth="760.0">
+            <columns>
+                <TableColumn fx:id="colPlaca" prefWidth="120.0" text="Placa" />
+                <TableColumn fx:id="colModelo" prefWidth="180.0" text="Modelo" />
+                <TableColumn fx:id="colMarca" prefWidth="180.0" text="Marca" />
+                <TableColumn fx:id="colAno" prefWidth="100.0" text="Ano" />
+                <TableColumn fx:id="colPreco" prefWidth="180.0" text="Preço" />
+            </columns>
+        </TableView>
+
+        <!-- Preview da Imagem do Carro selecionado (Área amarela indicada) -->
+        <VBox alignment="CENTER" spacing="8.0" style="-fx-border-color: #dddddd; -fx-border-width: 1px; -fx-padding: 10px; -fx-background-color: #fafafa;">
+            <Label style="-fx-font-weight: bold; -fx-font-size: 13px;" text="Foto do Veículo" />
+            <ImageView fx:id="imgCarro" fitHeight="170.0" fitWidth="260.0" preserveRatio="true" smooth="true">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin></ImageView>
+        </VBox>
+      <VBox.margin>
+         <Insets top="12.5" />
+      </VBox.margin>
+    </HBox>
+
+    <!-- Botão de Voltar no Canto Inferior -->
+    <HBox alignment="BOTTOM_RIGHT">
+        <Button onAction="#voltarMenu" style="-fx-cursor: hand;" text="← Voltar ao Menu">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin></Button>
+    </HBox>
+</VBox>

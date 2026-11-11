@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.unicentro.sistema_concessionaria.controller.VendedorController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <!-- Título Principal -->
+    <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Gerenciamento de Vendedores" />
+
+    <!-- Área Superior: Logo à esquerda e Formulário colado à extrema direita -->
+    <HBox alignment="TOP_LEFT" spacing="20.0">
+
+        <!-- Logo da Concessionária (Esquerda) -->
+        <VBox alignment="TOP_LEFT">
+            <ImageView fx:id="imgLogoVendedores" fitHeight="200.0" fitWidth="420.0" preserveRatio="true" smooth="true" />
+        </VBox>
+
+        <!-- Coluna da Direita (Ocupa o espaço restante e joga os elementos para a direita) -->
+        <VBox alignment="TOP_RIGHT" spacing="15.0" HBox.hgrow="ALWAYS">
+
+            <!-- Formulário compacto alinhado à direita -->
+            <GridPane alignment="TOP_RIGHT" hgap="15.0" vgap="10.0">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER" minWidth="90.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="NEVER" minWidth="260.0" prefWidth="340.0" />
+                </columnConstraints>
+
+                <Label text="CPF:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="txtCpf" promptText="Somente números" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Nome:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="txtNome" promptText="Senhor Fulano" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="E-mail:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="txtEmail" promptText="xxx@yy.z" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <Label text="Senha:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <PasswordField fx:id="txtSenha" promptText="Senha de acesso" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+            <!-- Botões de Ação alinhados à direita -->
+            <HBox alignment="CENTER_RIGHT" spacing="12.0" style="-fx-padding: 5px 0 0 0;">
+                <Button onAction="#salvarVendedor" style="-fx-background-color: #add8e6; -fx-cursor: hand;" text="Salvar / Atualizar" />
+                <Button onAction="#excluirVendedor" style="-fx-background-color: #ffb6c1; -fx-cursor: hand;" text="Excluir" />
+                <Button onAction="#limparCampos" style="-fx-cursor: hand;" text="Limpar" />
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <!-- Tabela de Vendedores -->
+    <TableView fx:id="tabelaVendedores" prefHeight="220.0" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colCpf" prefWidth="180.0" text="CPF" />
+            <TableColumn fx:id="colNome" prefWidth="380.0" text="Nome" />
+            <TableColumn fx:id="colEmail" prefWidth="380.0" text="E-mail" />
+        </columns>
+    </TableView>
+
+    <!-- Botão de Voltar -->
+    <HBox alignment="BOTTOM_RIGHT">
+        <Button onAction="#voltarMenu" style="-fx-cursor: hand;" text="← Voltar ao Menu" />
+    </HBox>
+</VBox>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.unicentro.sistema_concessionaria.controller.VendaController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <!-- Título Principal -->
+    <Label text="Gerenciamento de Vendas" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+
+    <!-- Área Superior: Formulário à esquerda e Logo à direita -->
+    <HBox spacing="40.0" alignment="TOP_LEFT">
+
+        <!-- Coluna da Esquerda: Formulário (Ordem ajustada) -->
+        <VBox spacing="12.0">
+            <GridPane hgap="15.0" vgap="12.0">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER" minWidth="130.0" prefWidth="140.0" />
+                    <ColumnConstraints hgrow="NEVER" minWidth="300.0" prefWidth="380.0" />
+                </columnConstraints>
+
+                <!-- 1. Vendedor Responsável -->
+                <Label text="Vendedor Responsável:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <Label fx:id="lblVendedorLogado" text="Carregando..." style="-fx-font-weight: bold; -fx-text-fill: #0066cc;" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                <!-- 2. Placa do Carro -->
+                <Label text="Placa do Carro:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <ComboBox fx:id="cbPlacaCarro" promptText="Selecione o carro" prefWidth="380.0" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                <!-- 3. Forma de Pagamento (Padrão Strategy) -->
+                <Label text="Forma de Pagamento:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <ComboBox fx:id="cbTipoPagamento" promptText="Selecione a forma de pagamento" prefWidth="380.0" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                <!-- 4. Nome Comprador -->
+                <Label text="Nome Comprador:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <TextField fx:id="txtNomeComprador" promptText="Nome completo do comprador" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+                <!-- 5. Data da Venda -->
+                <Label text="Data da Venda:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+                <DatePicker fx:id="dpDataVenda" promptText="Selecione a data" prefWidth="380.0" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+            </GridPane>
+
+            <!-- Botões de Ação -->
+            <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-padding: 5px 0 0 0;">
+                <Button text="Registar / Atualizar" onAction="#salvarVenda" style="-fx-background-color: #add8e6; -fx-cursor: hand;" />
+                <Button text="Excluir" onAction="#excluirVenda" style="-fx-background-color: #ffb6c1; -fx-cursor: hand;" />
+                <Button text="Limpar" onAction="#limparCampos" style="-fx-cursor: hand;" />
+            </HBox>
+        </VBox>
+
+        <!-- Coluna da Direita: Logo da Concessionária -->
+        <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+            <ImageView fx:id="imgLogoVendas" fitWidth="380.0" fitHeight="180.0" preserveRatio="true" smooth="true" />
+        </VBox>
+    </HBox>
+
+    <!-- Barra de Pesquisa / Mecanismo de Busca Diferencial -->
+    <HBox spacing="10.0" alignment="CENTER_LEFT" style="-fx-padding: 5px 0 0 0;">
+        <Label text="🔍 Pesquisar Venda:" style="-fx-font-weight: bold;" />
+        <TextField fx:id="txtBusca" promptText="Digite por placa, comprador, CPF ou ID..." prefWidth="400.0" />
+    </HBox>
+
+    <!-- Tabela de Vendas -->
+    <TableView fx:id="tabelaVendas" VBox.vgrow="ALWAYS" prefHeight="200.0">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="60.0" />
+            <TableColumn fx:id="colPlaca" text="Placa do Carro" prefWidth="120.0" />
+            <TableColumn fx:id="colCpfVendedor" text="CPF Vendedor" prefWidth="150.0" />
+            <TableColumn fx:id="colComprador" text="Nome Comprador" prefWidth="250.0" />
+            <TableColumn fx:id="colData" text="Data da Venda" prefWidth="130.0" />
+            <TableColumn fx:id="colValorFinal" text="Valor Final (R$)" prefWidth="120.0" />
+        </columns>
+    </TableView>
+
+    <!-- Botão de Voltar -->
+    <HBox alignment="BOTTOM_RIGHT">
+        <Button text="← Voltar ao Menu" onAction="#voltarMenu" style="-fx-cursor: hand;" />
+    </HBox>
+</VBox>
